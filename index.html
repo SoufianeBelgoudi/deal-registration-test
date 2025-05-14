@@ -1,0 +1,388 @@
+0<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citrix Deal Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 2rem;
+    }
+    .form-container {
+      background-color: white;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #0078d4;
+      text-align: center;
+    }
+    h2 {
+      color: #0078d4;
+      margin-top: 2rem;
+    }
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      flex: 1 1 45%;
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    input, select, textarea {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    #netNewLogoPricing{
+      align-self: start;
+      height: 20px;
+      width: 20px;
+      border: 1px solid #ccc;
+    }
+    .hidden, .hiddenForRenewal, .hiddenForNetNew, .hiddenHelp {
+      display: none;
+    }
+    .space{
+      height: 5px;
+      width: 30%;
+      background-color: #dddddd;
+      margin-bottom: 25px;
+    }
+    .info-icon{
+      margin-left: 8px;
+      cursor: pointer;
+      background-color: #ddd;
+      padding: 2px;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      text-align: center;
+      line-height: 18px;
+      font-size: 12px;
+    }
+    .help-text {
+      margin-top: 8px;
+      color: #555;
+      font-size: 0.6em;
+      background-color: #f0f0f0;
+      padding: 6px;
+      border-radius: 4px;
+      width: fit-content;
+} 
+    button[type="submit"]{
+      background-color: #0078d4;
+      color: white;
+      align-self: center;
+      padding: 8px 40px;
+      font-size: 0.8em;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 20px auto 0px;
+    }
+    
+  </style>
+</head>
+<body>
+  <form class="form-container" id="citrixForm">
+    <h1>Citrix Deal Registration Request for Europe</h1>
+
+    <!-- Section 1 -->
+    <div id="section-1">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="country">Country<span style="color:red">*</span></label>
+          <select id="country" name="country" required>
+            <option value="">-- Please Select --</option>
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="dealType">Deal Type<span style="color:red">*</span><span class="info-icon" onclick="toggleHelp()">&#9432</span></label>
+          
+          <select id="dealType" name="dealtype" required>
+            <option value="">-- Please Select --</option>
+            <option value="Net New End User Logo">Net New End User Logo</option>
+            <option value="Incumbent Renewal">Incumbent Renewal</option>
+            <option value="Non Incumbent Renewal">Non Incumbent Renewal</option>
+          </select>
+          <div id="help-text" class="help-text hiddenHelp">
+    Net New End User Logo: An end user that is either new to Citrix or has had no transactions in the past 24 months.
+  </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div id="section-2" class="hidden">
+      <h2>Deal Registration Information</h2>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="partnerName">Partner Name<span style="color:red">*</span></label>
+          <input type="text" id="partnerName" name="partnerName" required>
+        </div>
+        <div class="form-group">
+          <label for="partnerOrg">Citrix Partner Org ID</label>
+          <input type="text" id="partnerOrg" name="partnerOrg">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="partnerEmail">Partner Email<span style="color:red">*</span></label>
+          <input type="email" id="partnerEmail" name="partnerEmail">
+        </div>
+        <div class="form-group">
+          <label for="partnerStatus">Partner Status<span style="color:red">*</span></label>
+          <select id="partnerStatus" name="partnerStatus">
+            <option value="">-- Please Select --</option>
+            <option value="Authorized">Authorized</option>
+            <option value="Silver">Silver</option>
+            <option value="Platinium">Platinium</option>
+          </select>
+        </div>
+      </div>
+      <div class="space"></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="endUserName">End User Name<span style="color:red">*</span></label>
+          <input type="text" id="endUserName" name="endUserName" required>
+        </div>
+        <div class="form-group">
+          <label for="endUserOrg">Citrix End User Org ID</label>
+          <input type="text" id="endUserOrg" name="endUserOrg">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group hiddenForRenewal">
+          <label for="endUserEmail">End User Email</label>
+          <input type="email" id="endUserEmail" name="endUserEmail">
+        </div>
+        <div class="form-group hiddenForRenewal">
+          <label for="endUserPhone">End User Phone</label>
+          <input type="tel" id="endUserPhone" name="endUserPhone">
+        </div>
+        </div>
+      <div class="space"></div>
+       <div class="form-row">
+        <div class="form-group">
+          <label for="MYD">MYD Deal<span style="color:red">*</span></label>
+          <select id="myd" name="myd" required>
+            <option value="">-- Please Select --</option>
+            <option value="1">1</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div class="form-group hiddenForNetNew">
+          <label for="lastPaidPrice">Last Paid Price</label>
+          <input type="number" id="lastPaidPrice" name="lastPaidPrice" min="0" step="0.01">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group hiddenForRenewal">
+          <label for="netNewLogoPricing">Net New Logo Pricing Request</label>
+          <input type="checkbox" id="netNewLogoPricing" name="netNewLogoPricing">
+        </div>
+        <div class="form-group hiddenForNetNew">
+          <label for="rebateValuePartner">Value to be claimed for rebate by the Partner</label>
+          <input type="number" id="rebateValuePartner" name="rebateValuePartner">
+        </div>
+      </div>
+      <div class="space"></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="productDesc1">Product Description 1</label>
+          <select id="productDesc1" name="productDesc1">
+            <option value="">-- Please Select --</option>
+            <option value="Universal Hybrid Multi-Cloud">Universal Hybrid Multi-Cloud</option>
+            <option value="Citrix Platform">Citrix Platform</option>
+            <option value="Citrix for Private Cloud">Citrix for Private Cloud</option>
+            <option value="NetScaler Fixed Capacity">NetScaler Fixed Capacity</option>       
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="Qte1">Quantity</label>
+          <input type="number" id="Qte1" name="Qte1" min="0" step="1">
+        </div>
+   </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="productDesc2">Product Description 2</label>
+          <select id="productDesc2" name="productDesc2">
+            <option value="">-- Please Select --</option>
+            <option value="Universal Hybrid Multi-Cloud">Universal Hybrid Multi-Cloud</option>
+            <option value="Citrix Platform">Citrix Platform</option>
+            <option value="Citrix for Private Cloud">Citrix for Private Cloud</option>
+            <option value="NetScaler Fixed Capacity">NetScaler Fixed Capacity</option>           
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="Qte2">Quantity</label>
+          <input type="number" id="Qte2" name="Qte2" min="0" step="1">
+        </div>
+   </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="productDesc3">Product Description 3</label>
+          <select id="productDesc3" name="productDesc3">
+            <option value="">-- Please Select --</option>
+            <option value="Universal Hybrid Multi-Cloud">Universal Hybrid Multi-Cloud</option>
+            <option value="Citrix Platform">Citrix Platform</option>
+            <option value="Citrix for Private Cloud">Citrix for Private Cloud</option>
+            <option value="NetScaler Fixed Capacity">NetScaler Fixed Capacity</option>      
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="Qte3">Quantity</label>
+          <input type="number" id="Qte3" min="0" name="Qte3" step="1">
+        </div>
+   </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="productDesc4">Product Description 4</label>
+          <select id="productDesc4" name="productDesc4">
+            <option value="">-- Please Select --</option>
+            <option value="Universal Hybrid Multi-Cloud">Universal Hybrid Multi-Cloud</option>
+            <option value="Citrix Platform">Citrix Platform</option>
+            <option value="Citrix for Private Cloud">Citrix for Private Cloud</option>
+            <option value="NetScaler Fixed Capacity">NetScaler Fixed Capacity</option>        
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="Qte4">Quantity</label>
+          <input type="number" id="Qte4" name="Qte4" min="0" step="1">
+        </div>
+   </div>
+      <div class="form-row"><button type="submit">Submit</button></div>
+  </div>
+  </form>
+  
+
+  <script>
+    const dealType = document.getElementById("dealType");
+    const section2 = document.getElementById("section-2");
+    const countrySelect = document.getElementById('country');
+    
+    let HiddenRenewal = document.getElementsByClassName("hiddenForRenewal");
+    let HiddenNetNew = document.getElementsByClassName("hiddenForNetNew");
+   
+    const countries = ['Austria', 'Belgium', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Hungary', 'Ireland', 'Italy', 'Luxembourg', 'Netherlands', 'Norway', 'Polland', 'Portugal', 'Slovakia', 'Spain', 'Sweden', 'Switzerland', 'UK'];
+  
+    
+    //Country Options update
+  countries.forEach(country => {
+    const option = document.createElement('option');
+    option.value = country;
+    option.textContent = country;
+    countrySelect.appendChild(option);
+  });
+    
+    //help text function
+    function toggleHelp() {
+  const helpText = document.getElementById("help-text");
+  helpText.classList.toggle("hiddenHelp");
+}
+    
+    //Hide and Disable elements function
+    function hideAndDisable(elements) {
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].style.display = "none";
+      // Disable inputs inside
+      let inputs = elements[i].querySelectorAll("input, select, textarea");
+      inputs.forEach(input => {
+        if (input.type === "checkbox" || input.type === "radio") {
+        input.checked = false;
+      }
+        input.value = "";
+        input.disabled = true;
+      });
+    }
+  }
+    //Display and Enable elements function
+    function showAndEnable(elements) {
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].style.display = "inherit";
+      // Enable inputs inside
+      let inputs = elements[i].querySelectorAll("input, select, textarea");
+      inputs.forEach(input => {
+        input.disabled = false;
+      });
+    }
+  }
+  
+    dealType.addEventListener("change", () => {
+    if (dealType.value) {
+      section2.classList.remove("hidden");
+      if (dealType.value === "Net New End User Logo") {
+        showAndEnable(HiddenRenewal);
+        hideAndDisable(HiddenNetNew);
+      } else {
+        hideAndDisable(HiddenRenewal);
+        showAndEnable(HiddenNetNew);
+      }
+
+    } else {
+      section2.classList.add("hidden");
+    }
+  });
+    
+    document.getElementById('citrixForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const elements = form.querySelectorAll('input, select, textarea');
+      let csv = 'ID,Name,Value\n';
+
+      elements.forEach(el => {
+        let value;
+
+        if (el.type === 'checkbox' || el.type === 'radio') {
+          value = el.checked;
+        } else {
+          value = el.value;
+        }
+
+        csv += `${el.id},${el.name},${value}\n`;
+      });
+// Create timestamp
+      const now = new Date();
+      const timestamp = now.toISOString().replace(/T/, '_').replace(/:/g, '-').split('.')[0];
+
+      // Get country, partner, and enduser values (with fallback)
+      const country = document.getElementById('country')?.value || 'unknown';
+      const partner = document.getElementById('partnerName')?.value || 'unknown';
+      const enduser = document.getElementById('endUserName')?.value || 'unknown';
+
+      const filename = `DR-${timestamp}-${country}-${partner}-${enduser}.csv`.replace(/\s+/g, '_');
+
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+      
+      // ✅ Show success message
+      alert("✅ Your Deal Registration Request has been saved successfully!");
+
+      // ✅ Reset the form
+      form.reset();
+      section2.classList.add("hidden");
+    });
+  </script>
+</body>
+</html>
