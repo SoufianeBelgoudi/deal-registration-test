@@ -117,11 +117,15 @@
           <select id="dealType" name="dealtype" required>
             <option value="">-- Please Select --</option>
             <option value="Net New End User Logo">Net New End User Logo</option>
-            <option value="Incumbent Renewal">Incumbent Renewal</option>
-            <option value="Non Incumbent Renewal">Non Incumbent Renewal</option>
+            <option value="New Business"> New Business for existing End User</option>
+            <option value="Extension">Extension</option>
+            <option value="Expansion">Expansion</option>
           </select>
-          <div id="help-text" class="help-text hiddenHelp">
-    Net New End User Logo: An end user that is either new to Citrix or has not purchased the licensing product within the past 24 months.
+          <div id="help-text1" class="help-text hiddenHelp">
+    <b>Net New End User Logo</b>: An end user that is either new to Citrix or has not purchased the licensing product within the past 24 months.<br/>
+    <b>New Business for Existing Enduser</b>: An existing end user purchasing a new licensed product not previously owned.<br/>       
+    <b>Extension</b>: An existing end user requesting to extend the duration or term of an existing licensed product.<br/>  
+    <b>Expansion</b>: An existing end user looking to increase the number of licenses for an existing product.
   </div>
         </div>
       </div>
@@ -136,8 +140,8 @@
           <input type="text" id="partnerName" name="partnerName" required>
         </div>
         <div class="form-group">
-          <label for="partnerOrg">Citrix Partner Org ID</label>
-          <input type="text" id="partnerOrg" name="partnerOrg">
+          <label for="partnerOrg">Citrix Partner Org ID<span style="color:red">*</span></label>
+          <input type="text" id="partnerOrg" name="partnerOrg" required>
         </div>
       </div>
       <div class="form-row">
@@ -154,6 +158,17 @@
             <option value="Platinium">Platinium</option>
           </select>
         </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="partnerType">Partner Type<span style="color:red">*</span></label>
+          <select id="partnerType" name="partnerType" required>
+            <option value="">-- Please Select --</option>
+            <option value="Incumben">Incumbent</option>
+            <option value="Non Incumbent">Non Incumbent</option>
+          </select>
+        </div>
+        <div class="form-group"></div>
       </div>
       <div class="space"></div>
       <div class="form-row">
@@ -175,18 +190,7 @@
           <label for="endUserPhone">End User Phone</label>
           <input type="tel" id="endUserPhone" name="endUserPhone">
         </div>
-        </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="endUserType">End User Type</label>
-          <select id="endUserType" name="endUserType" required>
-            <option value="">-- Please Select --</option>
-            <option value="Commercial">Commercial</option>
-            <option value="Enterprise">Enterprise</option>
-          </select> 
-        </div>
-        <div class="form-group"></div>
-      </div>
+       </div>
       <div class="space"></div>
        <div class="form-row">
         <div class="form-group">
@@ -202,24 +206,10 @@
           <label for="netNewLogoPricing">Net New Logo Pricing Request</label>
           <input type="checkbox" id="netNewLogoPricing" name="netNewLogoPricing">
         </div>
-        <div class="form-group hiddenForNetNew">
-          <label for="renewalType">Renewal Type<span style="color:red">*</span></label>
-          <select id="renewalType" name="renewalType" required>
-            <option value="">-- Please Select --</option>
-            <option value="Extension">Extension</option>
-            <option value="Expansion">Expansion</option>
-          </select>
-        </div> 
-      </div>
-      <div class="form-row">
-        <div class="form-group hiddenForNetNew">
+       <div class="form-group hiddenForNetNew">
           <label for="lastPaidPrice">Last Paid Price</label>
           <input type="number" id="lastPaidPrice" name="lastPaidPrice" min="0" step="0.01">
-        </div>
-        <div class="form-group hiddenForNetNew">
-          <label for="rebateValuePartner">Value to be claimed for rebate by the Partner</label>
-          <input type="number" id="rebateValuePartner" name="rebateValuePartner">
-        </div>
+        </div> 
       </div>
       <div class="space"></div>
       <div class="form-row">
@@ -296,6 +286,11 @@
     const section2 = document.getElementById("section-2");
     const countrySelect = document.getElementById('country');
     
+    const helpText1 = document.getElementById('help-text1');
+    const helpText2 = document.getElementById('help-text2');
+    const helpText3 = document.getElementById('help-text3');
+    const helpText4 = document.getElementById('help-text4');
+    
     let HiddenRenewal = document.getElementsByClassName("hiddenForRenewal");
     let HiddenNetNew = document.getElementsByClassName("hiddenForNetNew");
    
@@ -312,9 +307,11 @@
     
     //help text function
     function toggleHelp() {
-  const helpText = document.getElementById("help-text");
-  helpText.classList.toggle("hiddenHelp");
+  const helpText1 = document.getElementById("help-text1");
+  helpText1.classList.toggle("hiddenHelp");
 }
+    
+    
     
     //Hide and Disable elements function
     function hideAndDisable(elements) {
