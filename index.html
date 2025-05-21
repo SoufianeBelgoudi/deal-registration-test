@@ -147,31 +147,14 @@
       <div class="form-row">
         <div class="form-group">
           <label for="partnerOrg">Partner Contact Name<span style="color:red">*</span></label>
-          <input type="text" id="partnerOrg" name="partnerOrg" required>
+          <input type="text" id="partnerContactName" name="partnerContactName" required>
         </div>
         <div class="form-group">
           <label for="partnerEmail">Partner Contact Email<span style="color:red">*</span></label>
           <input type="email" id="partnerContactEmail" name="partnerEmail">
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="partnerStatus">Partner Status<span style="color:red">*</span></label>
-          <select id="partnerStatus" name="partnerStatus" required>
-            <option value="">-- Please Select --</option>
-            <option value="Authorized">Authorized</option>
-            <option value="Silver">Silver</option>
-            <option value="Platinium">Platinium</option>
-          </select>
-      </div>
-         <div class="form-group">
-          <label for="partnerType">Partner Type<span style="color:red">*</span></label>
-          <select id="partnerType" name="partnerType" required>
-            <option value="">-- Please Select --</option>
-            <option value="Incumben">Incumbent</option>
-            <option value="Non Incumbent">Non Incumbent</option>
-          </select>
-        </div></div>
+
       <div class="space"></div>
       <div class="form-row">
         <div class="form-group">
@@ -179,8 +162,8 @@
           <input type="text" id="endUserName" name="endUserName" required>
         </div>
         <div class="form-group">
-          <label for="endUserOrg">Citrix End User Org ID</label>
-          <input type="text" id="endUserOrg" name="endUserOrg">
+          <label for="endUserOrg">Citrix End User Org ID<span style="color:red" class="hiddenForNetNew">*</span></label>
+          <input type="text" id="endUserOrg" name="endUserOrg" class="requiredRenewal">
         </div>
       </div>
       <div class="form-row">
@@ -196,11 +179,11 @@
       <div class="space"></div>
        <div class="form-row">
         <div class="form-group">
-          <label for="MYD">MYD Deal<span style="color:red">*</span></label>
+          <label for="MYD">Deal Term (Years)<span style="color:red">*</span></label>
           <select id="myd" name="myd" required>
             <option value="">-- Please Select --</option>
             <option value="1">1</option>
-            <option value="3">3</option>
+            <option value="3" selected="selected">3</option>
             <option value="5">5</option>
           </select>
         </div>
@@ -218,11 +201,7 @@
         <div class="form-group">
           <label for="productDesc1">Product Description 1</label>
           <select id="productDesc1" name="productDesc1">
-            <option value="">-- Please Select --</option>
-            <option value="Universal Hybrid Multi-Cloud">Universal Hybrid Multi-Cloud</option>
-            <option value="Citrix Platform">Citrix Platform</option>
-            <option value="Citrix for Private Cloud">Citrix for Private Cloud</option>
-            <option value="NetScaler Fixed Capacity">NetScaler Fixed Capacity</option>       
+            <option value="">-- Please Select --</option>     
           </select>
         </div>
         <div class="form-group">
@@ -234,11 +213,7 @@
         <div class="form-group">
           <label for="productDesc2">Product Description 2</label>
           <select id="productDesc2" name="productDesc2">
-            <option value="">-- Please Select --</option>
-            <option value="Universal Hybrid Multi-Cloud">Universal Hybrid Multi-Cloud</option>
-            <option value="Citrix Platform">Citrix Platform</option>
-            <option value="Citrix for Private Cloud">Citrix for Private Cloud</option>
-            <option value="NetScaler Fixed Capacity">NetScaler Fixed Capacity</option>           
+            <option value="">-- Please Select --</option>           
           </select>
         </div>
         <div class="form-group">
@@ -250,11 +225,7 @@
         <div class="form-group">
           <label for="productDesc3">Product Description 3</label>
           <select id="productDesc3" name="productDesc3">
-            <option value="">-- Please Select --</option>
-            <option value="Universal Hybrid Multi-Cloud">Universal Hybrid Multi-Cloud</option>
-            <option value="Citrix Platform">Citrix Platform</option>
-            <option value="Citrix for Private Cloud">Citrix for Private Cloud</option>
-            <option value="NetScaler Fixed Capacity">NetScaler Fixed Capacity</option>      
+            <option value="">-- Please Select --</option>     
           </select>
         </div>
         <div class="form-group">
@@ -267,10 +238,6 @@
           <label for="productDesc4">Product Description 4</label>
           <select id="productDesc4" name="productDesc4">
             <option value="">-- Please Select --</option>
-            <option value="Universal Hybrid Multi-Cloud">Universal Hybrid Multi-Cloud</option>
-            <option value="Citrix Platform">Citrix Platform</option>
-            <option value="Citrix for Private Cloud">Citrix for Private Cloud</option>
-            <option value="NetScaler Fixed Capacity">NetScaler Fixed Capacity</option>        
           </select>
         </div>
         <div class="form-group">
@@ -287,28 +254,34 @@
     const dealType = document.getElementById("dealType");
     const section2 = document.getElementById("section-2");
     const countrySelect = document.getElementById('country');
+    const productDesc1= document.getElementById('productDesc1');
+    const productDesc2= document.getElementById('productDesc2');
+    const productDesc3= document.getElementById('productDesc3');
+    const productDesc4= document.getElementById('productDesc4');
     
     let HiddenRenewal = document.getElementsByClassName("hiddenForRenewal");
     let HiddenNetNew = document.getElementsByClassName("hiddenForNetNew");
+    let requiredRenewal = document.getElementsByClassName("requiredRenewal");
    
     const countries = ['Austria', 'Belgium', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Hungary', 'Ireland', 'Italy', 'Luxembourg', 'Netherlands', 'Norway', 'Polland', 'Portugal', 'Slovakia', 'Spain', 'Sweden', 'Switzerland', 'UK'];
   
+    const products = ['Universal Hybrid Multi-Cloud', 'Citrix for Private Cloud', 'NetScaler Fixed Capacity', 'Legacy Products'];
     
-    //Country Options update
-  countries.forEach(country => {
+    
+    //Picklist Options update
+    function addOption(arrays, id){
+      arrays.forEach(array => {
     const option = document.createElement('option');
-    option.value = country;
-    option.textContent = country;
-    countrySelect.appendChild(option);
-  });
+    option.value = array;
+    option.textContent = array;
+    id.appendChild(option);
+  });}
     
     //help text function
     function toggleHelp() {
   const helpText1 = document.getElementById("help-text1");
   helpText1.classList.toggle("hiddenHelp");
-}
-    
-    
+}   
     
     //Hide and Disable elements function
     function hideAndDisable(elements) {
@@ -328,7 +301,11 @@
     //Display and Enable elements function
     function showAndEnable(elements) {
     for (let i = 0; i < elements.length; i++) {
-      elements[i].style.display = "inherit";
+      if (elements[i].tagName.toLowerCase() === 'span') {
+    elements[i].style.display = 'inline';
+  } else {
+    elements[i].style.display = 'inherit';
+  }
       // Enable inputs inside
       let inputs = elements[i].querySelectorAll("input, select, textarea");
       inputs.forEach(input => {
@@ -336,16 +313,50 @@
       });
     }
   }
-  
+    // Add required in inputs
+    function addRequired(elements) {
+    for (let i = 0; i < elements.length; i++) {
+    if (['input', 'select', 'textarea'].includes(elements[i].tagName.toLowerCase())) {
+      elements[i].required = true;
+    } else {
+      let inputs = elements[i].querySelectorAll("input, select, textarea");
+      inputs.forEach(input => {
+        input.required = true;
+      });
+    }
+  }
+}
+    // Remove required in inputs
+    function removeRequired(elements) {
+  for (let i = 0; i < elements.length; i++) {
+    if (['input', 'select', 'textarea'].includes(elements[i].tagName.toLowerCase())) {
+      elements[i].required = false;
+    } else {
+      let inputs = elements[i].querySelectorAll("input, select, textarea");
+      inputs.forEach(input => {
+        input.required = false;
+      });
+    }
+  }
+}
+    
+    addOption(countries, countrySelect);
+    addOption(products, productDesc1);
+    addOption(products, productDesc2);
+    addOption(products, productDesc3);
+    addOption(products, productDesc4);
+    
     dealType.addEventListener("change", () => {
     if (dealType.value) {
       section2.classList.remove("hidden");
       if (dealType.value === "Net New End User Logo") {
         showAndEnable(HiddenRenewal);
         hideAndDisable(HiddenNetNew);
+        removeRequired(requiredRenewal);
       } else {
         hideAndDisable(HiddenRenewal);
         showAndEnable(HiddenNetNew);
+        addRequired(requiredRenewal);
       }
 
     } else {
