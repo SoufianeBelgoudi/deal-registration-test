@@ -146,9 +146,15 @@
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label for="partnerEmail">Partner Email<span style="color:red">*</span></label>
-          <input type="email" id="partnerEmail" name="partnerEmail">
+          <label for="partnerOrg">Partner Contact Name<span style="color:red">*</span></label>
+          <input type="text" id="partnerOrg" name="partnerOrg" required>
         </div>
+        <div class="form-group">
+          <label for="partnerEmail">Partner Contact Email<span style="color:red">*</span></label>
+          <input type="email" id="partnerContactEmail" name="partnerEmail">
+        </div>
+      </div>
+      <div class="form-row">
         <div class="form-group">
           <label for="partnerStatus">Partner Status<span style="color:red">*</span></label>
           <select id="partnerStatus" name="partnerStatus" required>
@@ -157,19 +163,15 @@
             <option value="Silver">Silver</option>
             <option value="Platinium">Platinium</option>
           </select>
-        </div>
       </div>
-      <div class="form-row">
-        <div class="form-group">
+         <div class="form-group">
           <label for="partnerType">Partner Type<span style="color:red">*</span></label>
           <select id="partnerType" name="partnerType" required>
             <option value="">-- Please Select --</option>
             <option value="Incumben">Incumbent</option>
             <option value="Non Incumbent">Non Incumbent</option>
           </select>
-        </div>
-        <div class="form-group"></div>
-      </div>
+        </div></div>
       <div class="space"></div>
       <div class="form-row">
         <div class="form-group">
@@ -351,6 +353,7 @@
     }
   });
     
+    // For testing purposes, the Submit button will trigger an extraction of the Form content into a CSV file
     document.getElementById('citrixForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
