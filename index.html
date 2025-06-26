@@ -117,15 +117,11 @@
           <select id="dealType" name="dealtype" required>
             <option value="">-- Please Select --</option>
             <option value="Net New End User Logo">Net New End User Logo</option>
-            <option value="New Business"> New Business for existing End User</option>
-            <option value="Extension">Extension</option>
-            <option value="Expansion">Expansion</option>
+            <option value="Existing End User"> Existing End User</option>
           </select>
           <div id="help-text1" class="help-text hiddenHelp">
-    <b>Net New End User Logo</b>: An end user that is either new to Citrix or has not purchased the licensing product within the past 24 months.<br/>
-    <b>New Business for Existing Enduser</b>: An existing end user purchasing a new licensed product not previously owned.<br/>       
-    <b>Extension</b>: An existing end user requesting to extend the duration or term of an existing licensed product.<br/>  
-    <b>Expansion</b>: An existing end user looking to increase the number of licenses for an existing product.
+    <b>Net New End User Logo</b>: An end user who is new to Citrix, has no active licenses within the last 24 months, or has not purchased the relevant licensing product within the past 24 months.<br/>
+    <b>Existing End User</b>: An end user with an existing ORG ID who has either had active licenses within the last 24 months or made a purchase within the last 24 months.<br/> 
   </div>
         </div>
       </div>
@@ -179,17 +175,10 @@
       <div class="space"></div>
        <div class="form-row">
         <div class="form-group">
-          <label for="MYD">Deal Term (Years)<span style="color:red">*</span></label>
-          <select id="myd" name="myd" required>
-            <option value="">-- Please Select --</option>
-            <option value="1">1</option>
-            <option value="3" selected="selected">3</option>
-            <option value="5">5</option>
-          </select>
+          <label for="partnerRefID">Partner Reference ID</label>
+          <input type="text" id="partnerRefID" name="partnerRefID">
         </div>
         <div class="form-group hiddenForRenewal">
-          <!-- <label for="netNewLogoPricing">Net New Logo Pricing Request</label>
-          <input type="checkbox" id="netNewLogoPricing" name="netNewLogoPricing">-->
         </div>
        <div class="form-group hiddenForNetNew">
           <label for="lastPaidPrice">Last Paid Price</label>
@@ -199,14 +188,14 @@
       <div class="space"></div>
       <div class="form-row">
         <div class="form-group">
-          <label for="productDesc1">Product Description 1</label>
-          <select id="productDesc1" name="productDesc1">
+          <label for="productDesc1">Product Description 1<span style="color:red">*</span></label>
+          <select id="productDesc1" name="productDesc1" required>
             <option value="">-- Please Select --</option>     
           </select>
         </div>
         <div class="form-group">
-          <label for="Qte1">Quantity</label>
-          <input type="number" id="Qte1" name="Qte1" min="0" step="1">
+          <label for="Qte1">Quantity<span style="color:red">*</span></label>
+          <input type="number" id="Qte1" name="Qte1" min="0" step="1" required>
         </div>
    </div>
       <div class="form-row">
